@@ -13,8 +13,8 @@ with col2:
     st.title("sajjad sokhanvari")
     content = """
     Hi , I am Sajjad! I am a Python programmer,teacher,and founder of PythonHow.
-    
-    
+
+
     """
     st.info(content)
 content2 = """
