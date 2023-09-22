@@ -1,39 +1,60 @@
-import pandas
 import streamlit as st
-import pandas as pd
+import pandas
 
+# Set webpage layout to wide
 st.set_page_config(layout="wide")
 
-col1, col2 = st.columns(2)
+# Add a header and some other text
+st.header("The Best Company")
+st.write("""
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+officia deserunt mollit anim id est laborum.""")
+st.subheader("Our Team")
 
+# Prepare the columns
+col1, col2, col3 = st.columns(3)
+
+# Make a dataframe with the company members
+df = pandas.read_csv("004 data.csv")
+
+# Add content to the first column
 with col1:
-    st.image("images/photo2.png", width=600)
+    # Iterate over only the first four rows
+    for index, row in df[:4].iterrows():
+        # Add member's first and last names
+        st.subheader(f'{row["first name"].title()} {row["last name"].title()}')
+        # Add member's role in the company
+        st.write(row["role"])
+        # Add member's photo
+        st.image("images2/" + row["image"])
 
+# Add content to the second column
 with col2:
-    st.title("sajjad sokhanvari")
-    content = """
-    Hi , I am Sajjad! I am a Python programmer,teacher,and founder of PythonHow.
+    # Iterate over rows 4 to 7
+    for index, row in df[4:8].iterrows():
+        # Add member's first and last names
+        st.subheader(f'{row["first name"].title()} {row["last name"].title()}')
+        # Add member's role in the company
+        st.write(row["role"])
+        # Add member's photo
+        st.image("images2/" + row["image"])
 
-
-    """
-    st.info(content)
-content2 = """
-Below you can find some of the app,  I have built in Python .
-"""
-st.write(content2)
-col3, empty_col, col4 = st.columns([1.5, 0.5, 1.5])
-df = pandas.read_csv("006 data.csv", sep=";")
 
 with col3:
-    for index, row in df[:10].iterrows():
-        st.header(row["title"])
-        st.write(row["description"])
-        st.image("images/" + row["image"])
-        st.write(f"[Source Code]({row['url']})")
+    # Iterate over rows 4 to 7
+    for index, row in df[8:].iterrows():
+        # Add member's first and last names
+        st.subheader(f'{row["first name"].title()} {row["last name"].title()}')
+        # Add member's role in the company
+        st.write(row["role"])
+        # Add member's photo
+        st.image("images2/" + row["image"])
 
-with col4:
-    for index, row in df[10:].iterrows():
-        st.header(row["title"])
-        st.write(row["description"])
-        st.image("images/" + row["image"])
-        st.write(f"[Source Code]({row['url']})")
+
+
+
